@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIPSHADE - The Future of Discord AI</title>
+    <meta name="description" content="Meet DIPSHADE - The world's first true JARVIS-style Discord AI. Natural conversations, Hinglish support, and intelligence that thinks like a human.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <span class="logo-text">DIPSHADE</span>
+            </div>
+            
+            <div class="nav-menu"<a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Live Demo</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="auth.html" class="nav-link">Sign In</a>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="#" class="btn-invite">
+                    <i class="fab fa-discord"></i>
+                    Invite Now
+                </a>
+            </div>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <video autoplay muted loop class="hero-video">
+                <source src="assets/jarvis-bg.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">🚀 World's First JARVIS-Style Discord AI</span>
+            </div>
+            
+            <h1 class="hero-title">
+                Meet <span class="gradient-text">DIPSHADE</span>
+                <br>Your AI Companion
+            </h1>
+            
+            <p class="hero-subtitle">
+                The future of Discord bots is here. No commands, no complexity. 
+                Just natural conversations with an AI that thinks, understands, and speaks like a human.
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1000">0</div>
+                    <div class="stat-label">Active Servers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50000">0</div>
+                    <div class="stat-label">Happy Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="99">0</div>
+                    <div class="stat-label">% Uptime</div>
+                </div>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#" class="btn-primary">
+                    <i class="fab fa-discord"></i>
+                    Add to Discord
+                    <div class="btn-glow"></div>
+                </a>
+                <a href="#demo" class="btn-secondary">
+                    <i class="fas fa-play"></i>
+                    Watch Demo
+                </a>
+            </div>
+            
+            <div class="hero-features">
+                <div class="feature-tag">
+                    <i class="fas fa-brain"></i>
+                    True AI Intelligence
+                </div>
+                <div class="feature-tag">
+                    <i class="fas fa-language"></i>
+                    Hinglish Support
+                </div>
+                <div class="feature-tag">
+                    <i class="fas fa-microphone"></i>
+                    Voice Responses
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Revolutionary Features</h2>
+                <p class="section-subtitle">Experience the next generation of Discord AI</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>True AI Intelligence</h3>
+                    <p>No rigid commands. Just talk naturally and DIPSHADE understands context, emotions, and intent like a real conversation.</p>
+                    <div class="feature-demo">
+                        <div class="chat-bubble user">Hey DIPSHADE, I'm feeling sad today</div>
+                        <div class="chat-bubble bot">Arre yaar, kya hua? Tell me what's bothering you. I'm here to listen and help! 💕</div>
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Perfect Hinglish</h3>
+                    <p>Speaks your language! Seamlessly switches between Hindi and English, understanding cultural context and slang.</p>
+                    <div class="feature-demo">
+                        <div class="chat-bubble user">Yaar, mujhe coding mein help chahiye</div>
+                        <div class="chat-bubble bot">Haan bhai! Coding mein kya problem hai? Python, JavaScript, ya koi aur language? Batao main help karunga! 🚀</div>
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>Voice Responses</h3>
+                    <p>Hear DIPSHADE speak! Advanced text-to-speech with natural Indian English pronunciation for immersive conversations.</p>
+                    <div class="feature-demo">
+                        <div class="voice-wave">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <p>🔊 "Namaste! Main DIPSHADE hu, tumhara AI companion!"</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Smart Moderation</h3>
+                    <p>Intelligent server management that understands context. No false positives, just smart decisions.</p>
+                    <div class="feature-demo">
+                        <div class="mod-action">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Auto-detected spam and took action</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Relationship Advice</h3>
+                    <p>Your personal counselor! Get genuine advice on relationships, life, and personal growth.</p>
+                    <div class="feature-demo">
+                        <div class="chat-bubble user">How do I ask someone out?</div>
+                        <div class="chat-bubble bot">Confidence is key! Be genuine, choose the right moment, and remember - rejection isn't the end of the world. You got this! 💪</div>
+                    </div>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Dynamic Actions</h3>
+                    <p>Executes complex server tasks through natural language. No learning commands - just ask!</p>
+                    <div class="feature-demo">
+                        <div class="code-block">
+                            <span class="code-comment">// AI generates and executes code</span>
+                            <span class="code-line">await member.add_roles(role)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience DIPSHADE Live</h2>
+                <p class="section-subtitle">Try chatting with our AI right here, right now!</p>
+            </div>
+            
+            <div class="demo-container">
+                <div class="demo-phone">
+                    <div class="phone-header">
+                        <div class="phone-status">
+                            <span class="time">9:41</span>
+                            <div class="phone-icons">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <div class="discord-header">
+                            <div class="server-info">
+                                <div class="server-icon">DS</div>
+                                <div class="server-details">
+                                    <span class="server-name">DIPSHADE Demo</span>
+                                    <span class="channel-name"># general</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container" id="demoChat">
+                        <div class="chat-message bot-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <span class="message-author">DIPSHADE</span>
+                                <span class="message-time">Today at 9:41 AM</span>
+                                <p>Hey there! 👋 I'm DIPSHADE, your Discord AI assistant. Ask me to manage your server - create roles, ban users, clean channels, or any Discord task using natural language!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="chat-input">
+                            <input type="text" id="demoInput" placeholder="Type your message here..." maxlength="200">
+                            <button id="sendDemo" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-features">
+                    <h3>Try These Examples:</h3>
+                    <div class="example-messages">
+                        <button class="example-btn" data-message="Create a role named Sage with admin">
+                            <i class="fas fa-shield-alt"></i>
+                            Create a role named Sage with admin
+                        </button>
+                        <button class="example-btn" data-message="Give Sage role to @user123">
+                            <i class="fas fa-user-crown"></i>
+                            Give Sage role to @user123
+                        </button>
+                        <button class="example-btn" data-message="Delete 50 messages">
+                            <i class="fas fa-broom"></i>
+                            Delete 50 messages
+                        </button>
+                        <button class="example-btn" data-message="Ban @spammer for spam">
+                            <i class="fas fa-hammer"></i>
+                            Ban @spammer for spam
+                        </button>
+                        <button class="example-btn" data-message="Create voice channel Gaming Lounge">
+                            <i class="fas fa-microphone"></i>
+                            Create voice channel Gaming Lounge
+                        </button>
+                        <button class="example-btn" data-message="Mute @troublemaker for 1 hour">
+                            <i class="fas fa-volume-mute"></i>
+                            Mute @troublemaker for 1 hour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">DIPSHADE vs Traditional Bots</h2>
+                <p class="section-subtitle">See why thousands are making the switch</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="feature-col">Features</div>
+                    <div class="dipshade-col">
+                        <div class="logo-small">
+                            <i class="fas fa-robot"></i>
+                            DIPSHADE
+                        </div>
+                    </div>
+                    <div class="others-col">Traditional Bots</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">Natural Language Understanding</div>
+                    <div class="dipshade-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Perfect</span>
+                    </div>
+                    <div class="others-feature">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Commands Only</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">Hinglish Support</div>
+                    <div class="dipshade-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Native</span>
+                    </div>
+                    <div class="others-feature">
+                        <i class="fas fa-times-circle"></i>
+                        <span>None</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">Voice Responses</div>
+                    <div class="dipshade-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>High Quality</span>
+                    </div>
+                    <div class="others-feature">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Text Only</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">Context Awareness</div>
+                    <div class="dipshade-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Advanced AI</span>
+                    </div>
+                    <div class="others-feature">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Basic</span>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">Learning Curve</div>
+                    <div class="dipshade-feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Zero</span>
+                    </div>
+                    <div class="others-feature">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Complex Commands</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-subtitle">Start free, upgrade when you're ready</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Basic AI conversations
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Hinglish support
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Voice responses (limited)
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Community support
+                        </div</div>
+                    <a href="auth.html" class="plan-btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">449</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Everything in Free
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Unlimited voice responses
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Advanced AI features
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Priority support
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            Custom personality
+                        </div>
+                    </div>
+                    <a href="payment.html?plan=pro" class="plan-btn">Upgrade Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Users Say</h2>
+                <p class="section-subtitle">Join thousands of happy communities</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"DIPSHADE is literally like having JARVIS in our Discord server! The way it understands Hinglish and responds naturally is mind-blowing. Our community loves it!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Arjun Sharma</span>
+                            <span class="author-role">Gaming Community Owner</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Finally, a bot that gets our culture! DIPSHADE speaks our language and understands context. It's not just a bot, it's like a friend in our server."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Priya Patel</span>
+                            <span class="author-role">Study Group Admin</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The voice responses are incredible! DIPSHADE actually speaks with proper Indian pronunciation. It's like having a real conversation, not just text."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/50" alt="User">
+                        </div>
+                        <div class="author-info">
+                            <span class="author-name">Rohit Kumar</span>
+                            <span class="author-role">Tech Community Moderator</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Experience the Future?</h2>
+                <p>Join thousands of servers already using DIPSHADE. Your AI companion is just one click away.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary large">
+                        <i class="fab fa-discord"></i>
+                        Add DIPSHADE to Discord
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="#" class="btn-secondary large">
+                        <i class="fas fa-question-circle"></i>
+                        Have Questions?
+                    </a>
+                </div>
+                <div class="cta-note">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Free to start • No credit card required • Setup in 30 seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="logo-text">DIPSHADE</span>
+                    </div>
+                    <p>The world's first JARVIS-style Discord AI. Bringing the future of conversation to your server.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#demo">Live Demo</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Discord Server</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DIPSHADE. All rights reserved. Made with ❤️ for the Discord community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

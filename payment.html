@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - DIPSHADE</title>
+    <meta name="description" content="Upgrade your DIPSHADE plan and unlock premium features for your Discord AI assistant.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="payment.css">
+    
+    <!-- Razorpay Checkout -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <span class="logo-text">DIPSHADE</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#pricing" class="nav-link">Pricing</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="auth.html" class="btn-secondary">
+                    <i class="fas fa-user"></i>
+                    Account
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <!-- Payment Header -->
+            <div class="payment-header">
+                <h1>Upgrade to Premium</h1>
+                <p>Unlock the full potential of DIPSHADE AI</p>
+            </div>
+
+            <!-- Payment Content -->
+            <div class="payment-content">
+                <!-- Plan Selection -->
+                <div class="plan-selection">
+                    <h2>Choose Your Plan</h2>
+                    
+                    <div class="plans-grid"<!-- Pro Plan --<div class="plan-card" data-plan="pro" data-price="381" data-period="month"<div class="plan-badge">Most Popular</div>
+                            <div class="plan-header">
+                                <h3>Pro Plan</h3>
+                                <div class="plan-price">
+                                    <span class="currency">₹</span>
+                                    <span class="amount">449</span>
+                                    <span class="period">/month</span>
+                                </div>
+                            </div>
+                            <div class="plan-features">
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    Unlimited AI conversations
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    Advanced voice responses
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    Priority support
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    Custom personality
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check"></i>
+                                    Analytics dashboard
+                                </div</div<button class="plan-btn active" onclick="selectPlan('pro', 381, 'month')">
+                                Select Pro Plan
+                            </button>
+                        </div>
+
+                                        </div>
+
+                <!-- Payment Summary --<div class="payment-summary"<h3>Payment Summary</h3<div class="summary-card"<div class="summary-item">
+                            <span class="label">Selected Plan:</span>
+                            <span class="value" id="selectedPlan">Pro Plan</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Billing Period:</span<span class="value" id="billingPeriod">Monthly</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span class="label">Amount:</span>
+                            <span class="value" id="totalAmount">₹449</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <button class="payment-btn" id="paymentBtn" onclick="initiatePayment()">
+                        <i class="fas fa-credit-card"></i>
+                        Pay Securely with Razorpay
+                        <div class="btn-glow"></div>
+                    </button>
+
+                    <!-- Security Info -->
+                    <div class="security-info">
+                        <div class="security-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>256-bit SSL encryption</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-lock"></i>
+                            <span>PCI DSS compliant</span>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-undo"></i>
+                            <span>30-day money back guarantee</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="payment-methods">
+                        <h4>Accepted Payment Methods</h4>
+                        <div class="methods-grid">
+                            <div class="method-item">
+                                <i class="fab fa-cc-visa"></i>
+                                <span>Visa</span>
+                            </div>
+                            <div class="method-item">
+                                <i class="fab fa-cc-mastercard"></i>
+                                <span>Mastercard</span>
+                            </div>
+                            <div class="method-item">
+                                <i class="fas fa-university"></i>
+                                <span>Net Banking</span>
+                            </div>
+                            <div class="method-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>UPI</span>
+                            </div>
+                            <div class="method-item">
+                                <i class="fas fa-wallet"></i>
+                                <span>Wallets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success">
+            <div class="modal-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Payment Successful!</h2>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for upgrading to DIPSHADE Premium!</p>
+                <div class="success-details">
+                    <div class="detail-item">
+                        <span class="label">Transaction ID:</span>
+                        <span class="value" id="transactionId">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Plan:</span>
+                        <span class="value" id="successPlan">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Amount Paid:</span>
+                        <span class="value" id="successAmount">-</span>
+                    </div>
+                </div>
+                <p class="success-note">Your premium features will be activated within 5 minutes.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="goToDashboard()">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Go to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Processing Payment...</h3>
+            <p>Please wait while we process your payment securely</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script src="payment.js"></script>
+</body>
+</html>
