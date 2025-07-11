@@ -1,0 +1,79 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    
+    function isValidUser() {
+      return isAuthenticated() && 
+             request.auth.token.email_verified == true;
+    }
+    
+    // Users collection - users can read/write their own profile
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+      allow read: if isAdmin(); // Admins can read all user profiles
+    }
+    
+    // Subscriptions collection - users can read/write their own subscription
+    match /subscriptions/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && 
+                       request.resource.data.userId == userId &&
+                       request.resource.data.status in ['active', 'inactive'] &&
+                       request.resource.data.verified == true;
+      allow update: if isOwner(userId) && 
+                       request.resource.data.userId == userId;
+      allow read: if isAdmin(); // Admins can read all subscriptions
+      allow write: if isAdmin(); // Admins can write all subscriptions
+    }
+    
+    // Payments collection - users can read their own payments
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+      allow write: if false; // Only server-side writes allowed for security
+      allow read: if isAdmin(); // Admins can read all payments
+    }
+    
+    // Admin collection - only for checking admin status
+    match /admins/{userId} {
+      allow read: if isOwner(userId);
+      allow write: if false; // Only manually managed
+    }
+    
+    // Analytics collection - admin only
+    match /analytics/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Logs collection - admin only
+    match /logs/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Public data (like pricing plans) - readable by all authenticated users
+    match /public/{document=**} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Default deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

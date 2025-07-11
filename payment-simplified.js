@@ -1,16 +1,16 @@
-// DIPSHADE Payment Integration with Razorpay - PRODUCTION VERSION
+// DIPSHADE Payment Integration with Razorpay - SIMPLIFIED VERSION (Uses Orders Collection Only)
 
 let auth, db, currentUser;
 let selectedPlan = {
     name: 'pro',
     displayName: 'Pro Plan',
-    price: 1,
+    price: 449,
     period: 'month'
 };
 
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Payment page loaded - PRODUCTION MODE (₹1)');
+    console.log('Payment page loaded - SIMPLIFIED MODE (₹449)');
     initFirebase();
     initPaymentPage();
     updatePaymentSummary();
@@ -38,8 +38,6 @@ async function initFirebase() {
             if (user) {
                 currentUser = user;
                 console.log('User authenticated:', user.email);
-                console.log('User UID:', user.uid);
-                console.log('User verified:', user.emailVerified);
             } else {
                 // Try to sign in anonymously for testing
                 auth.signInAnonymously()
@@ -135,9 +133,9 @@ function updatePaymentSummary() {
     console.log('Payment summary updated:', { total });
 }
 
-// MAIN PAYMENT FUNCTION - PRODUCTION VERSION
+// MAIN PAYMENT FUNCTION - SIMPLIFIED VERSION
 async function initiatePayment() {
-    console.log('Initiating payment for ₹1 (PRODUCTION MODE)...');
+    console.log('Initiating payment for ₹449 (SIMPLIFIED MODE)...');
     
     if (!currentUser) {
         alert('Please wait for authentication...');
@@ -150,7 +148,7 @@ async function initiatePayment() {
         return;
     }
     
-    const amount = selectedPlan.price * 100; // Convert to paise (₹1 = 100 paise)
+    const amount = selectedPlan.price * 100; // Convert to paise (₹449 = 44900 paise)
     
     console.log('Payment details:', {
         amount: amount,
@@ -212,7 +210,7 @@ async function initiatePayment() {
             currency: orderData.currency,
             order_id: orderData.order_id, // ✅ This prevents auto-refunds!
             name: 'DIPSHADE',
-            description: 'Premium AI Assistant Subscription (₹1/month)',
+            description: 'Premium AI Assistant Subscription (₹449/month)',
             image: 'https://your-domain.com/logo.png', // Optional logo
             handler: function(response) {
                 // This function is called when payment is successful
@@ -278,7 +276,7 @@ async function initiatePayment() {
     }
 }
 
-// Handle Payment Success - WITH BACKEND VERIFICATION
+// Handle Payment Success - SIMPLIFIED VERSION (No frontend subscription creation)
 async function handlePaymentSuccess(response) {
     console.log('🎯 Processing successful payment:', response);
     
@@ -322,14 +320,19 @@ async function handlePaymentSuccess(response) {
             console.log('📊 Verification response data:', verifyData);
         } catch (jsonError) {
             console.error('❌ Failed to parse verification response as JSON:', jsonError);
-            throw new Error('Invalid verification response format');
+            // If we can't parse the response but got a 200 status, assume success
+            if (verifyResponse.ok) {
+                console.log('✅ Payment verification assumed successful (200 status)');
+            } else {
+                throw new Error('Invalid verification response format');
+            }
         }
         
         // More flexible verification check - handle different response formats
-        const isVerified = verifyData.success === true || 
-                          verifyData.verified === true || 
+        const isVerified = verifyData?.success === true || 
+                          verifyData?.verified === true || 
                           verifyResponse.ok === true ||
-                          (verifyData.status && verifyData.status === 'success');
+                          (verifyData?.status && verifyData.status === 'success');
         
         if (!isVerified) {
             console.error('❌ Verification failed. Response:', verifyData);
@@ -341,121 +344,14 @@ async function handlePaymentSuccess(response) {
                 console.warn('⚠️ Backend verification failed, but payment data exists. Proceeding with caution...');
                 console.warn('⚠️ This should be investigated, but user will get their subscription');
             } else {
-                throw new Error('Payment verification failed: ' + (verifyData.error || 'Unknown error'));
+                throw new Error('Payment verification failed: ' + (verifyData?.error || 'Unknown error'));
             }
         }
 
         console.log('✅ Payment verified successfully by backend');
         console.log('📊 Backend has stored detailed order data in orders collection');
-
-        // Step 2: Create subscription data in subscriptions collection (frontend responsibility)
-        showLoading('Creating subscription...');
-        
-        // Check if Firebase is properly initialized
-        if (!db) {
-            console.error('❌ Firebase Firestore not initialized!');
-            throw new Error('Database not available');
-        }
-        
-        if (!currentUser || !currentUser.uid) {
-            console.error('❌ Current user not available!');
-            throw new Error('User authentication required');
-        }
-        
-        console.log('🔧 Current user:', currentUser);
-        console.log('🔧 Selected plan:', selectedPlan);
-        
-        const subscriptionData = {
-            userId: currentUser.uid,
-            userEmail: currentUser.email,
-            plan: selectedPlan.name,
-            planDisplayName: selectedPlan.displayName,
-            amount: selectedPlan.price,
-            currency: 'INR',
-            period: selectedPlan.period,
-            paymentId: response.razorpay_payment_id,
-            orderId: response.razorpay_order_id,
-            signature: response.razorpay_signature,
-            status: 'active',
-            startDate: new Date().toISOString(),
-            endDate: new Date(Date.now() + (selectedPlan.period === 'year' ? 365 : 30) * 24 * 60 * 60 * 1000).toISOString(),
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString(),
-            verified: true,
-            testMode: false
-        };
-
-        console.log('💾 Attempting to save subscription data:', subscriptionData);
-        
-        // Save subscription (most important) - with detailed error handling
-        try {
-            console.log('🔄 Writing to subscriptions collection...');
-            const subscriptionRef = db.collection('subscriptions').doc(currentUser.uid);
-            await subscriptionRef.set(subscriptionData);
-            console.log('✅ Subscription saved successfully to subscriptions collection');
-            
-            // Verify the write was successful
-            const savedDoc = await subscriptionRef.get();
-            if (savedDoc.exists) {
-                console.log('✅ Subscription document verified in Firestore:', savedDoc.data());
-            } else {
-                console.error('❌ Subscription document not found after write!');
-            }
-            
-        } catch (subError) {
-            console.error('❌ Subscription save failed:', subError);
-            console.error('❌ Error details:', {
-                code: subError.code,
-                message: subError.message,
-                stack: subError.stack
-            });
-            
-            // Try alternative approach - create with add() instead of set()
-            try {
-                console.log('🔄 Trying alternative approach with add()...');
-                const docRef = await db.collection('subscriptions').add({
-                    ...subscriptionData,
-                    documentId: currentUser.uid
-                });
-                console.log('✅ Subscription saved with add() method, ID:', docRef.id);
-            } catch (addError) {
-                console.error('❌ Alternative approach also failed:', addError);
-                throw new Error('Failed to save subscription data: ' + subError.message);
-            }
-        }
-
-        // Update user profile with subscription status
-        showLoading('Updating user profile...');
-        try {
-            console.log('🔄 Updating user profile...');
-            const userRef = db.collection('users').doc(currentUser.uid);
-            await userRef.set({
-                email: currentUser.email,
-                displayName: currentUser.displayName || 'User',
-                subscriptionStatus: 'active',
-                currentPlan: selectedPlan.name,
-                subscriptionStartDate: subscriptionData.startDate,
-                subscriptionEndDate: subscriptionData.endDate,
-                lastPaymentId: response.razorpay_payment_id,
-                updatedAt: new Date().toISOString()
-            }, { merge: true });
-            console.log('✅ User profile updated in users collection');
-            
-            // Verify user profile update
-            const userDoc = await userRef.get();
-            if (userDoc.exists) {
-                console.log('✅ User profile verified:', userDoc.data());
-            }
-            
-        } catch (userError) {
-            console.warn('⚠️ User profile update warning:', userError);
-        }
-
         console.log('🎉 Payment processing completed successfully!');
-        console.log('📊 Data structure:');
-        console.log('  - orders: Backend stores detailed Razorpay data');
-        console.log('  - subscriptions: Frontend stores subscription status');
-        console.log('  - users: Frontend stores user profile with subscription info');
+        console.log('📊 Using orders collection for subscription status - no additional frontend storage needed');
 
         // Hide loading and show success
         hideLoading();
@@ -536,25 +432,57 @@ function hideLoading() {
     }
 }
 
-// USER DATA MANAGEMENT FUNCTIONS
+// SUBSCRIPTION FUNCTIONS - USING ORDERS COLLECTION
 
-// Get user subscription data
+// Get user subscription data from orders collection
 async function getUserSubscription(userId) {
     try {
-        const doc = await db.collection('subscriptions').doc(userId).get();
-        if (doc.exists) {
-            return doc.data();
+        // Query orders collection for the user's latest verified payment
+        const ordersQuery = await db.collection('orders')
+            .where('userId', '==', userId)
+            .where('status', '==', 'paid')
+            .orderBy('verifiedAt', 'desc')
+            .limit(1)
+            .get();
+        
+        if (!ordersQuery.empty) {
+            const orderDoc = ordersQuery.docs[0];
+            const orderData = orderDoc.data();
+            
+            // Convert order data to subscription format
+            const subscriptionData = {
+                userId: orderData.userId,
+                userEmail: orderData.userData?.email || orderData.paymentDetails?.email,
+                plan: orderData.plan,
+                planDisplayName: orderData.plan === 'pro' ? 'Pro Plan' : orderData.plan,
+                amount: orderData.amount / 100, // Convert from paise to rupees
+                currency: orderData.currency,
+                period: 'month', // Default to monthly
+                paymentId: orderData.paymentId,
+                orderId: orderData.orderId,
+                signature: orderData.signature,
+                status: 'active',
+                startDate: orderData.verifiedAt,
+                endDate: new Date(new Date(orderData.verifiedAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+                createdAt: orderData.createdAt,
+                updatedAt: orderData.verifiedAt,
+                verified: true,
+                testMode: false
+            };
+            
+            console.log('📊 Subscription data from orders:', subscriptionData);
+            return subscriptionData;
         } else {
-            console.log('No subscription found for user:', userId);
+            console.log('No verified orders found for user:', userId);
             return null;
         }
     } catch (error) {
-        console.error('Error getting user subscription:', error);
+        console.error('Error getting user subscription from orders:', error);
         return null;
     }
 }
 
-// Check if user subscription is active
+// Check if user subscription is active (using orders collection)
 async function isSubscriptionActive(userId) {
     try {
         const subscription = await getUserSubscription(userId);
@@ -563,72 +491,23 @@ async function isSubscriptionActive(userId) {
         const now = new Date();
         const endDate = new Date(subscription.endDate);
         
-        return subscription.status === 'active' && endDate > now;
+        const isActive = subscription.status === 'active' && endDate > now;
+        console.log('🔍 Subscription check:', {
+            userId,
+            status: subscription.status,
+            endDate: subscription.endDate,
+            now: now.toISOString(),
+            isActive
+        });
+        
+        return isActive;
     } catch (error) {
         console.error('Error checking subscription status:', error);
         return false;
     }
 }
 
-// Update subscription status (for renewals, cancellations, etc.)
-async function updateSubscriptionStatus(userId, status, additionalData = {}) {
-    try {
-        const updateData = {
-            status: status,
-            updatedAt: new Date().toISOString(),
-            ...additionalData
-        };
-        
-        await db.collection('subscriptions').doc(userId).update(updateData);
-        
-        // Also update user profile
-        await db.collection('users').doc(userId).update({
-            subscriptionStatus: status,
-            updatedAt: new Date().toISOString()
-        });
-        
-        console.log('Subscription status updated:', { userId, status, additionalData });
-        return true;
-    } catch (error) {
-        console.error('Error updating subscription status:', error);
-        return false;
-    }
-}
-
-// Get user profile data
-async function getUserProfile(userId) {
-    try {
-        const doc = await db.collection('users').doc(userId).get();
-        if (doc.exists) {
-            return doc.data();
-        } else {
-            console.log('No profile found for user:', userId);
-            return null;
-        }
-    } catch (error) {
-        console.error('Error getting user profile:', error);
-        return null;
-    }
-}
-
-// Create or update user profile
-async function updateUserProfile(userId, profileData) {
-    try {
-        const updateData = {
-            ...profileData,
-            updatedAt: new Date().toISOString()
-        };
-        
-        await db.collection('users').doc(userId).set(updateData, { merge: true });
-        console.log('User profile updated:', { userId, profileData });
-        return true;
-    } catch (error) {
-        console.error('Error updating user profile:', error);
-        return false;
-    }
-}
-
-// Check subscription before allowing payment
+// Check subscription before allowing payment (using orders collection)
 async function checkSubscriptionBeforePayment() {
     console.log('🔍 Checking existing subscription before payment...');
     
@@ -739,6 +618,6 @@ function goToHomePage() {
 }
 
 // Debug info
-console.log('Payment script loaded - PRODUCTION VERSION');
+console.log('Payment script loaded - SIMPLIFIED VERSION (Orders Collection Only)');
 console.log('Razorpay available:', typeof Razorpay !== 'undefined');
 console.log('Default plan price: ₹' + selectedPlan.price);

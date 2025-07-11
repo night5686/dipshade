@@ -75,7 +75,7 @@
                     
                     <div class="plans-grid">
                         <!-- Pro Plan -->
-                        <div class="plan-card" data-plan="pro" data-price="381" data-period="month">
+                        <div class="plan-card" data-plan="pro" data-price="449" data-period="month">
                             <div class="plan-badge">Most Popular</div>
                             <div class="plan-header">
                                 <h3>Pro Plan</h3>
@@ -107,7 +107,7 @@
                                     Analytics dashboard
                                 </div>
                             </div>
-                            <button class="plan-btn active" onclick="selectPlan('pro', 381, 'month')">
+                            <button class="plan-btn active" onclick="selectPlan('pro', 449, 'month')">
                                 Select Pro Plan
                             </button>
                         </div>
@@ -291,6 +291,15 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
-    <script src="payment.js"></script>
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Backend Configuration -->
+    <script src="backend-config.js"></script>
+    
+    <!-- Payment Script - Simplified Version -->
+    <script src="payment-simplified.js"></script>
 </body>
 </html>
