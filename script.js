@@ -463,7 +463,7 @@ console.log(`
 ██╔══██╗██║██╔══██╗██╔════╝██║  ██║██╔══██╗██╔══██╗██╔════╝
 ██║  ██║██║██████╔╝███████╗███████║███████║██║  ██║█████╗  
 ██║  ██║██║██╔═══╝ ╚════██║██╔══██║██╔══██║██║  ██║██╔══╝  
-██████╔╝██║██║     ███████║��█║  ██║██║  ██║██████╔╝███████╗
+██████╔╝██║██║     ███████║██║  ██║██║  ██║██████╔╝███████╗
 ╚═════╝ ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝
 
 🤖 Welcome to DIPSHADE - The Future of Discord AI!
@@ -473,3 +473,442 @@ console.log(`
 
 console.log('%cHey there, curious developer! 👋', 'color: #ffd700; font-size: 16px; font-weight: bold;');
 console.log('%cLike what you see? DIPSHADE is built with love and cutting-edge tech!', 'color: #00d4ff; font-size: 14px;');
+
+// Footer Link Functions
+function openDocumentation() {
+    showModal('Documentation', `
+        <div class="modal-content-custom">
+            <h3>📚 DIPSHADE Documentation</h3>
+            <p>Welcome to DIPSHADE's comprehensive documentation!</p>
+            
+            <div class="doc-sections">
+                <div class="doc-section">
+                    <h4>🚀 Getting Started</h4>
+                    <ul>
+                        <li>How to invite DIPSHADE to your server</li>
+                        <li>Basic setup and configuration</li>
+                        <li>First conversation with your AI</li>
+                    </ul>
+                </div>
+                
+                <div class="doc-section">
+                    <h4>💬 Natural Language Commands</h4>
+                    <ul>
+                        <li>Server management through conversation</li>
+                        <li>Role and permission management</li>
+                        <li>Channel creation and moderation</li>
+                    </ul>
+                </div>
+                
+                <div class="doc-section">
+                    <h4>🎨 Customization</h4>
+                    <ul>
+                        <li>Personality customization</li>
+                        <li>Response preferences</li>
+                        <li>Language settings (English/Hinglish)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="doc-actions">
+                <a href="https://docs.dipshade.com" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i>
+                    View Full Documentation
+                </a>
+            </div>
+        </div>
+    `);
+}
+
+function openHelpCenter() {
+    showModal('Help Center', `
+        <div class="modal-content-custom">
+            <h3>🆘 DIPSHADE Help Center</h3>
+            <p>Need help? We're here for you 24/7!</p>
+            
+            <div class="help-options">
+                <div class="help-option">
+                    <div class="help-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>Knowledge Base</h4>
+                    <p>Browse our comprehensive guides and tutorials</p>
+                    <button class="help-btn" onclick="window.open('https://help.dipshade.com', '_blank')">
+                        Browse Articles
+                    </button>
+                </div>
+                
+                <div class="help-option">
+                    <div class="help-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h4>Discord Support</h4>
+                    <p>Join our community server for instant help</p>
+                    <button class="help-btn" onclick="window.open('https://discord.gg/dipshade', '_blank')">
+                        Join Server
+                    </button>
+                </div>
+                
+                <div class="help-option">
+                    <div class="help-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h4>Video Tutorials</h4>
+                    <p>Watch step-by-step video guides</p>
+                    <button class="help-btn" onclick="window.open('https://youtube.com/@dipshade', '_blank')">
+                        Watch Videos
+                    </button>
+                </div>
+            </div>
+        </div>
+    `);
+}
+
+function openContactForm() {
+    showModal('Contact Us', `
+        <div class="modal-content-custom">
+            <h3>📧 Get in Touch</h3>
+            <p>Have a question or need support? Send us a message!</p>
+            
+            <form class="contact-form" onsubmit="submitContactForm(event)">
+                <div class="form-group">
+                    <label for="contactName">Your Name</label>
+                    <input type="text" id="contactName" required placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactSubject">Subject</label>
+                    <select id="contactSubject" required>
+                        <option value="">Select a topic</option>
+                        <option value="support">Technical Support</option>
+                        <option value="billing">Billing Question</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="bug">Bug Report</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" required placeholder="Describe your question or issue..." rows="5"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+    `);
+}
+
+function openBugReport() {
+    showModal('Report a Bug', `
+        <div class="modal-content-custom">
+            <h3>🐛 Bug Report</h3>
+            <p>Help us improve DIPSHADE by reporting any issues you encounter.</p>
+            
+            <form class="bug-report-form" onsubmit="submitBugReport(event)">
+                <div class="form-group">
+                    <label for="bugTitle">Bug Title</label>
+                    <input type="text" id="bugTitle" required placeholder="Brief description of the bug">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bugSeverity">Severity</label>
+                    <select id="bugSeverity" required>
+                        <option value="">Select severity</option>
+                        <option value="low">Low - Minor issue</option>
+                        <option value="medium">Medium - Affects functionality</option>
+                        <option value="high">High - Major issue</option>
+                        <option value="critical">Critical - App unusable</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bugSteps">Steps to Reproduce</label>
+                    <textarea id="bugSteps" required placeholder="1. Go to...&#10;2. Click on...&#10;3. See error..." rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bugExpected">Expected Behavior</label>
+                    <textarea id="bugExpected" required placeholder="What should have happened?" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bugActual">Actual Behavior</label>
+                    <textarea id="bugActual" required placeholder="What actually happened?" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-bug"></i>
+                    Submit Bug Report
+                </button>
+            </form>
+        </div>
+    `);
+}
+
+function openCookiePolicy() {
+    showModal('Cookie Policy', `
+        <div class="modal-content-custom">
+            <h3>🍪 Cookie Policy</h3>
+            <p><strong>Last updated:</strong> January 2024</p>
+            
+            <div class="cookie-content">
+                <h4>What are cookies?</h4>
+                <p>Cookies are small text files stored on your device when you visit our website. They help us provide you with a better experience.</p>
+                
+                <h4>How we use cookies:</h4>
+                <ul>
+                    <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+                    <li><strong>Analytics Cookies:</strong> Help us understand how you use our site</li>
+                    <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                </ul>
+                
+                <h4>Managing cookies:</h4>
+                <p>You can control cookies through your browser settings. Note that disabling cookies may affect website functionality.</p>
+                
+                <div class="cookie-controls">
+                    <button class="btn-secondary" onclick="manageCookiePreferences()">
+                        <i class="fas fa-cog"></i>
+                        Manage Preferences
+                    </button>
+                    <button class="btn-primary" onclick="acceptAllCookies()">
+                        <i class="fas fa-check"></i>
+                        Accept All
+                    </button>
+                </div>
+            </div>
+        </div>
+    `);
+}
+
+function openGDPRInfo() {
+    showModal('GDPR Information', `
+        <div class="modal-content-custom">
+            <h3>🛡️ GDPR Compliance</h3>
+            <p>DIPSHADE is committed to protecting your privacy and complying with GDPR regulations.</p>
+            
+            <div class="gdpr-content">
+                <h4>Your Rights Under GDPR:</h4>
+                <ul>
+                    <li><strong>Right to Access:</strong> Request information about your personal data</li>
+                    <li><strong>Right to Rectification:</strong> Correct inaccurate personal data</li>
+                    <li><strong>Right to Erasure:</strong> Request deletion of your personal data</li>
+                    <li><strong>Right to Portability:</strong> Receive your data in a structured format</li>
+                    <li><strong>Right to Object:</strong> Object to processing of your personal data</li>
+                </ul>
+                
+                <h4>Data We Collect:</h4>
+                <ul>
+                    <li>Discord user ID and username (for bot functionality)</li>
+                    <li>Server information (for proper operation)</li>
+                    <li>Usage analytics (anonymized)</li>
+                </ul>
+                
+                <h4>Exercise Your Rights:</h4>
+                <p>To exercise any of your GDPR rights, please contact us at <strong>privacy@dipshade.com</strong></p>
+                
+                <div class="gdpr-actions">
+                    <button class="btn-secondary" onclick="requestDataExport()">
+                        <i class="fas fa-download"></i>
+                        Request Data Export
+                    </button>
+                    <button class="btn-primary" onclick="requestDataDeletion()">
+                        <i class="fas fa-trash"></i>
+                        Request Data Deletion
+                    </button>
+                </div>
+            </div>
+        </div>
+    `);
+}
+
+// Modal System
+function showModal(title, content) {
+    // Remove existing modal if any
+    const existingModal = document.getElementById('customModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.id = 'customModal';
+    modal.className = 'modal active';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>${title}</h2>
+                <button class="modal-close" onclick="closeCustomModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                ${content}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeCustomModal();
+        }
+    });
+}
+
+function closeCustomModal() {
+    const modal = document.getElementById('customModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Form Submission Functions
+function submitContactForm(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('contactName').value;
+    const email = document.getElementById('contactEmail').value;
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value;
+    
+    // Simulate form submission
+    showSuccessMessage('Message sent successfully! We\'ll get back to you within 24 hours.');
+    closeCustomModal();
+}
+
+function submitBugReport(event) {
+    event.preventDefault();
+    
+    showSuccessMessage('Bug report submitted successfully! Thank you for helping us improve DIPSHADE.');
+    closeCustomModal();
+}
+
+function manageCookiePreferences() {
+    showModal('Cookie Preferences', `
+        <div class="modal-content-custom">
+            <h3>🍪 Manage Cookie Preferences</h3>
+            
+            <div class="cookie-preferences">
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="switch">
+                            <input type="checkbox" checked disabled>
+                            <span class="slider"></span>
+                        </label>
+                        <div class="cookie-info">
+                            <h4>Essential Cookies</h4>
+                            <p>Required for basic website functionality. Cannot be disabled.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="analyticsCookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <div class="cookie-info">
+                            <h4>Analytics Cookies</h4>
+                            <p>Help us understand how you use our website to improve your experience.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cookie-category">
+                    <div class="cookie-toggle">
+                        <label class="switch">
+                            <input type="checkbox" id="preferenceCookies" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <div class="cookie-info">
+                            <h4>Preference Cookies</h4>
+                            <p>Remember your settings and preferences for a personalized experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cookie-actions">
+                <button class="btn-secondary" onclick="closeCustomModal()">Cancel</button>
+                <button class="btn-primary" onclick="saveCookiePreferences()">Save Preferences</button>
+            </div>
+        </div>
+    `);
+}
+
+function acceptAllCookies() {
+    showSuccessMessage('Cookie preferences saved! All cookies have been accepted.');
+    closeCustomModal();
+}
+
+function saveCookiePreferences() {
+    showSuccessMessage('Cookie preferences saved successfully!');
+    closeCustomModal();
+}
+
+function requestDataExport() {
+    showSuccessMessage('Data export request submitted! You will receive your data within 30 days at your registered email address.');
+    closeCustomModal();
+}
+
+function requestDataDeletion() {
+    showModal('Confirm Data Deletion', `
+        <div class="modal-content-custom">
+            <h3>⚠️ Confirm Data Deletion</h3>
+            <p>Are you sure you want to delete all your personal data? This action cannot be undone.</p>
+            
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Deleting your data will:</p>
+                <ul>
+                    <li>Remove DIPSHADE from all your servers</li>
+                    <li>Delete all your conversation history</li>
+                    <li>Cancel any active subscriptions</li>
+                    <li>Remove your account permanently</li>
+                </ul>
+            </div>
+            
+            <div class="confirmation-actions">
+                <button class="btn-secondary" onclick="closeCustomModal()">Cancel</button>
+                <button class="btn-danger" onclick="confirmDataDeletion()">
+                    <i class="fas fa-trash"></i>
+                    Delete My Data
+                </button>
+            </div>
+        </div>
+    `);
+}
+
+function confirmDataDeletion() {
+    showSuccessMessage('Data deletion request submitted! Your data will be permanently deleted within 30 days. You will receive a confirmation email.');
+    closeCustomModal();
+}
+
+function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-toast';
+    successDiv.innerHTML = `
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(successDiv);
+    
+    setTimeout(() => {
+        successDiv.remove();
+    }, 5000);
+}

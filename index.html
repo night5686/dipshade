@@ -14,6 +14,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer-modal-styles.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -37,6 +38,7 @@
                 <a href="#demo" class="nav-link">Live Demo</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
                 <a href="auth.html" class="nav-link">Sign In</a>
             </div>
             
@@ -425,7 +427,8 @@
                         <div class="feature">
                             <i class="fas fa-check"></i>
                             Community support
-                        </div</div>
+                        </div>
+                    </div>
                     <a href="auth.html" class="plan-btn">Get Started</a>
                 </div>
                 
@@ -583,10 +586,10 @@
                     </div>
                     <p>The world's first JARVIS-style Discord AI. Bringing the future of conversation to your server.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://discord.gg/dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/dipshade_ai" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://youtube.com/@dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -596,17 +599,17 @@
                         <li><a href="#features">Features</a></li>
                         <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#demo">Live Demo</a></li>
-                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#" onclick="openDocumentation()">Documentation</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Discord Server</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#" onclick="openHelpCenter()">Help Center</a></li>
+                        <li><a href="https://discord.gg/dipshade" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+                        <li><a href="#" onclick="openContactForm()">Contact Us</a></li>
+                        <li><a href="#" onclick="openBugReport()">Bug Reports</a></li>
                     </ul>
                 </div>
                 
@@ -615,8 +618,8 @@
                     <ul>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#" onclick="openCookiePolicy()">Cookie Policy</a></li>
+                        <li><a href="#" onclick="openGDPRInfo()">GDPR</a></li>
                     </ul>
                 </div>
             </div>
