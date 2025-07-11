@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Status Example - DIPSHADE</title>
+    <link rel="stylesheet" href="subscription-status.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .example-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f8f9fa;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Subscription Status Checker</h1>
+        <p>This page demonstrates how to use the subscription status checker across your website.</p>
+
+        <div class="example-section">
+            <h3>1. Display Subscription Status</h3>
+            <p>Shows the current subscription status with styling:</p>
+            <div id="subscriptionDisplay"></div>
+            <button onclick="displayStatus()">Refresh Status</button>
+        </div>
+
+        <div class="example-section">
+            <h3>2. Check if Subscription is Active</h3>
+            <p>Simple true/false check for subscription status:</p>
+            <button onclick="checkActive()">Check if Active</button>
+            <div id="activeResult" class="result"></div>
+        </div>
+
+        <div class="example-section">
+            <h3>3. Get Detailed Subscription Info</h3>
+            <p>Get complete subscription details including expiry dates:</p>
+            <button onclick="getDetails()">Get Details</button>
+            <div id="detailsResult" class="result"></div>
+        </div>
+
+        <div class="example-section">
+            <h3>4. Require Active Subscription</h3>
+            <p>Redirect to payment page if subscription is not active:</p>
+            <button onclick="requireSubscription()">Require Active Subscription</button>
+            <button onclick="requireSubscriptionSilent()">Require (No Alert)</button>
+        </div>
+
+        <div class="example-section">
+            <h3>5. Compact Status (for headers)</h3>
+            <p>Compact version suitable for navigation bars:</p>
+            <div id="compactDisplay"></div>
+            <button onclick="displayCompactStatus()">Show Compact</button>
+        </div>
+
+        <div class="example-section">
+            <h3>6. Manual Subscription Management</h3>
+            <p>Update subscription status manually:</p>
+            <button onclick="cancelSubscription()">Cancel Subscription</button>
+            <button onclick="updateStatus('active')">Reactivate</button>
+            <button onclick="updateStatus('paused')">Pause</button>
+        </div>
+    </div>
+
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Subscription Status Checker -->
+    <script src="subscription-status.js"></script>
+
+    <script>
+        // Example functions
+        async function displayStatus() {
+            document.getElementById('subscriptionDisplay').innerHTML = '<div class="subscription-status loading">Loading subscription status...</div>';
+            await subscriptionChecker.displaySubscriptionStatus('subscriptionDisplay');
+        }
+
+        async function checkActive() {
+            const isActive = await subscriptionChecker.isSubscriptionActive();
+            document.getElementById('activeResult').textContent = `Subscription Active: ${isActive}`;
+        }
+
+        async function getDetails() {
+            const details = await subscriptionChecker.getSubscriptionDetails();
+            document.getElementById('detailsResult').textContent = JSON.stringify(details, null, 2);
+        }
+
+        async function requireSubscription() {
+            const allowed = await subscriptionChecker.checkAndRedirect({
+                requireActive: true,
+                redirectUrl: 'payment.html',
+                showAlert: true
+            });
+            
+            if (allowed) {
+                alert('✅ Access granted! You have an active subscription.');
+            }
+        }
+
+        async function requireSubscriptionSilent() {
+            const allowed = await subscriptionChecker.checkAndRedirect({
+                requireActive: true,
+                redirectUrl: 'payment.html',
+                showAlert: false
+            });
+            
+            if (allowed) {
+                alert('✅ Access granted! You have an active subscription.');
+            }
+        }
+
+        async function displayCompactStatus() {
+            await subscriptionChecker.displaySubscriptionStatus('compactDisplay');
+            // Add compact class
+            const statusEl = document.querySelector('#compactDisplay .subscription-status');
+            if (statusEl) {
+                statusEl.classList.add('compact');
+            }
+        }
+
+        async function cancelSubscription() {
+            const success = await subscriptionChecker.cancelSubscription('User requested cancellation');
+            if (success) {
+                displayStatus(); // Refresh display
+            }
+        }
+
+        async function updateStatus(status) {
+            const success = await subscriptionChecker.updateSubscriptionStatus(status);
+            if (success) {
+                alert(`Subscription status updated to: ${status}`);
+                displayStatus(); // Refresh display
+            } else {
+                alert('Failed to update subscription status');
+            }
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                displayStatus();
+            }, 2000); // Wait for Firebase to initialize
+        });
+    </script>
+</body>
+</html>

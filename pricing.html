@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - DIPSHADE</title>
+    <meta name="description" content="Choose the perfect DIPSHADE plan for your Discord server. Start free or upgrade to Pro for advanced AI features.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pricing.css">
+    <link rel="stylesheet" href="footer-modal-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <span class="logo-text">DIPSHADE</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="index.html#demo" class="nav-link">Live Demo</a>
+                <a href="pricing.html" class="nav-link active">Pricing</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="auth.html" class="nav-link">Sign In</a>
+            </div>
+            
+            <div class="nav-buttons">
+                <a href="#" class="btn-invite">
+                    <i class="fab fa-discord"></i>
+                    Invite Now
+                </a>
+            </div>
+            
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <div class="pricing-hero-content">
+                <h1 class="pricing-title">
+                    Choose Your <span class="gradient-text">DIPSHADE</span> Plan
+                </h1>
+                <p class="pricing-subtitle">
+                    Start free and upgrade when you're ready to unlock the full potential of AI-powered Discord management
+                </p>
+                
+                <!-- Billing Toggle -->
+                <div class="billing-toggle">
+                    <span class="billing-label">Monthly</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="billingToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="billing-label">
+                        Yearly 
+                        <span class="discount-badge">Save 20%</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section class="pricing-plans">
+        <div class="container">
+            <!-- Subscription Status Banner (will be shown for active subscribers) -->
+            <div id="subscription-status-banner" class="subscription-status-banner" style="display: none;">
+                <div class="status-banner-content">
+                    <div class="status-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="status-info">
+                        <h3 id="statusPlanName">You're on the PRO plan!</h3>
+                        <p id="statusExpiry">Your subscription is active until Dec 25, 2024</p>
+                    </div>
+                    <div class="status-actions">
+                        <button onclick="goToDashboard()" class="btn-secondary">
+                            <i class="fas fa-cog"></i>
+                            Manage Subscription
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Perfect for trying out DIPSHADE</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic AI conversations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Hinglish support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Voice responses (limited)</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Community support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Up to 1 server</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>100 AI interactions/month</span>
+                        </div>
+                    </div>
+                    
+                    <a href="auth.html" class="plan-btn">
+                        <i class="fab fa-discord"></i>
+                        Get Started Free
+                    </a>
+                    
+                    <div class="plan-note">
+                        <i class="fas fa-info-circle"></i>
+                        <span>No credit card required</span>
+                    </div>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount monthly-price">449</span>
+                            <span class="amount yearly-price" style="display: none;">359</span>
+                            <span class="period monthly-period">/month</span>
+                            <span class="period yearly-period" style="display: none;">/month</span>
+                        </div>
+                        <p class="plan-description">For serious Discord communities</p>
+                        <div class="yearly-savings" style="display: none;">
+                            <span class="original-price">₹449/month</span>
+                            <span class="savings-text">Save ₹1,080/year</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Free</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited AI conversations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited voice responses</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced AI features</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom personality</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited servers</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Analytics dashboard</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    
+                    <a href="payment.html?plan=pro" class="plan-btn" id="proUpgradeBtn">
+                        <i class="fas fa-crown"></i>
+                        Upgrade to Pro
+                    </a>
+                    
+                    <div class="plan-note">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>30-day money back guarantee</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison -->
+    <section class="features-comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Feature Comparison</h2>
+                <p class="section-subtitle">See what's included in each plan</p>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="feature-col">Features</div>
+                    <div class="plan-col">Free</div>
+                    <div class="plan-col featured">Pro</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-comments"></i>
+                        AI Conversations
+                    </div>
+                    <div class="plan-feature">100/month</div>
+                    <div class="plan-feature featured">Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-microphone"></i>
+                        Voice Responses
+                    </div>
+                    <div class="plan-feature">Limited</div>
+                    <div class="plan-feature featured">Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-server"></i>
+                        Discord Servers
+                    </div>
+                    <div class="plan-feature">1</div>
+                    <div class="plan-feature featured">Unlimited</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-palette"></i>
+                        Custom Personality
+                    </div>
+                    <div class="plan-feature">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="plan-feature featured">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-chart-line"></i>
+                        Analytics Dashboard
+                    </div>
+                    <div class="plan-feature">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="plan-feature featured">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-headset"></i>
+                        Support
+                    </div>
+                    <div class="plan-feature">Community</div>
+                    <div class="plan-feature featured">Priority</div>
+                </div>
+                
+                <div class="comparison-row">
+                    <div class="feature-name">
+                        <i class="fas fa-code"></i>
+                        API Access
+                    </div>
+                    <div class="plan-feature">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="plan-feature featured">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="pricing-faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about DIPSHADE pricing</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I change plans anytime?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any billing differences.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is there a free trial for Pro?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a generous free plan that lets you experience DIPSHADE's core features. You can upgrade to Pro anytime to unlock advanced features.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, debit cards, UPI, net banking, and popular digital wallets through our secure payment partner Razorpay.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can I cancel my subscription?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel your subscription at any time from your dashboard. You'll continue to have access to Pro features until the end of your billing period.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you offer refunds?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee for all Pro subscriptions. If you're not satisfied, contact us for a full refund.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Is my data secure?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use enterprise-grade security, end-to-end encryption, and comply with GDPR and other privacy regulations to keep your data safe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Supercharge Your Discord Server?</h2>
+                <p>Join thousands of communities already using DIPSHADE to create amazing Discord experiences.</p>
+                <div class="cta-buttons">
+                    <a href="auth.html" class="btn-primary large">
+                        <i class="fab fa-discord"></i>
+                        Start Free Today
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="#contact" class="btn-secondary large">
+                        <i class="fas fa-question-circle"></i>
+                        Have Questions?
+                    </a>
+                </div>
+                <div class="cta-note">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>No credit card required • 30-day money back guarantee • Cancel anytime</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <span class="logo-text">DIPSHADE</span>
+                    </div>
+                    <p>The world's first JARVIS-style Discord AI. Bringing the future of conversation to your server.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i></a>
+                        <a href="https://twitter.com/dipshade_ai" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://youtube.com/@dipshade" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="index.html#demo">Live Demo</a></li>
+                        <li><a href="#" onclick="openDocumentation()">Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#" onclick="openHelpCenter()">Help Center</a></li>
+                        <li><a href="https://discord.gg/dipshade" target="_blank" rel="noopener noreferrer">Discord Server</a></li>
+                        <li><a href="#" onclick="openContactForm()">Contact Us</a></li>
+                        <li><a href="#" onclick="openBugReport()">Bug Reports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="#" onclick="openCookiePolicy()">Cookie Policy</a></li>
+                        <li><a href="#" onclick="openGDPRInfo()">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DIPSHADE. All rights reserved. Made with ❤️ for the Discord community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Firebase CDN for subscription management -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Pricing Page Script -->
+    <script src="pricing.js"></script>
+</body>
+</html>
